@@ -17,7 +17,7 @@ public:
     float x, y, z;
 public:
     // constructor
-    Vertex(int x, int y, int z)
+    Vertex(float x, float y, float z)
     {
         this->x = x;
         this->y = y;
