@@ -1,0 +1,10 @@
+# # ignore all directories with the name src and src_DS
+# src/
+# src_DS/
+# .vscode/
+/src/*
+/src_DS/*
+
+# trying to negate files that have .cpp extension
+!src/*.cpp
+!src_DS/*.cpp
