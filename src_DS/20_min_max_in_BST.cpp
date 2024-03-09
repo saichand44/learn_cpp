@@ -1,17 +1,15 @@
-# include <iostream>
-#include <iomanip>
+#include <iostream>
 
 /*
-Here we are implementing the binary search tree using doubly linked list. In binary
-search trees, the data of nodes on left is <= to the data of the nodes on the right
-side.
+Here we are implmenting a method ot fins the minimum and maximum elements in a
+binary search tree. We will use two methods. 1) Using loops / iterations and
+2) Using recursion. One thing to remember is that, in BST, the smaller values are
+on the left side and higher values are on the right side.
 
-For inserting a new data into the tree, we first compare the new value with the
-data of th nodes and accordingly decide whether to put it on left or right side.
-For both inserting and searching the tree, we will use recursion.
 
-In case of balanced binary trees, the typical time complexity is O(logn) [log with base 2]
-In worst case i.e. for unbalanced binary tree, the time complexity is O(n)
+For min. value, all we need to do is to keep searching in the left side of the
+tree until we find a node which has no further children. Similar stratergy for 
+finding the maximum value. 
 */
 
 struct BSTNode
@@ -67,23 +65,46 @@ BSTNode* insert(BSTNode* &root, int data)
     return root;
 }
 
-void searchBST(BSTNode* root, int data)
+// using interations method
+int findMin_loop(BSTNode* root)
 {
-    // check if the BST is empty or data not found
+    // check if the tree is empty
     if (root == NULL)
     {
-        std::cout << "Not Found!" <<std::endl;
-        return;
+        std::cout << "Binary Search Tree is empty!!" << std::endl;
+        return -1;
     }
 
-    else if (root->data == data) std::cout << "Found!" <<std::endl;
-    else if (root->data <= data)
-    {
-        return searchBST(root->left, data);
-    }
     else
     {
-        return searchBST(root->right, data);
+        while(root->left != NULL)
+        {
+            root = root->left;
+        }
+
+        return root->data;
+    }
+}
+
+// using recursive method
+int findMax_recursion(BSTNode* root)
+{
+    // check if the tree is empty
+    if (root == NULL)
+    {
+        std::cout << "Binary Search Tree is empty!!" << std::endl;
+        return -1;
+    }
+
+    else if (root->right == NULL)
+    {
+        return root->data;
+    }
+
+    else
+    {   
+        // search in the right sub tree
+        return findMax_recursion(root->right);
     }
 }
 
@@ -96,10 +117,8 @@ int main()
     insert(root, 20);
     insert(root, 25);
     insert(root, 8);
-    insert(root, 12);   
+    insert(root, 12);
 
-    int queryNum;
-    std::cout << "Enter the number for query:"; 
-    std::cin >> queryNum;
-    searchBST(root, queryNum);
+    std::cout << findMin_loop(root) << std::endl;
+    std::cout << findMax_recursion(root) << std::endl;
 }

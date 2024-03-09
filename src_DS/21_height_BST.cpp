@@ -1,17 +1,16 @@
-# include <iostream>
-#include <iomanip>
+#include <iostream>
 
 /*
-Here we are implementing the binary search tree using doubly linked list. In binary
-search trees, the data of nodes on left is <= to the data of the nodes on the right
-side.
+Here we will find the height if the tree. 
 
-For inserting a new data into the tree, we first compare the new value with the
-data of th nodes and accordingly decide whether to put it on left or right side.
-For both inserting and searching the tree, we will use recursion.
+1. Height of a node = Number of edges along the longest path from that node 
+                      to the leaf node
+2. Height of a tree = Height of a root node
+3. Depth of a node  = Number of edges in the path from the root node to that 
+                      particular node
 
-In case of balanced binary trees, the typical time complexity is O(logn) [log with base 2]
-In worst case i.e. for unbalanced binary tree, the time complexity is O(n)
+Height and Depth of a node need not be same. 
+Ex: Height of a leaf node = 0 but the depth of a leaf node will be > 0 (for non empty tree)
 */
 
 struct BSTNode
@@ -67,24 +66,20 @@ BSTNode* insert(BSTNode* &root, int data)
     return root;
 }
 
-void searchBST(BSTNode* root, int data)
+int findHeight(BSTNode* root)
 {
-    // check if the BST is empty or data not found
-    if (root == NULL)
-    {
-        std::cout << "Not Found!" <<std::endl;
-        return;
-    }
+    /*
+    Here we recursively get the height of the left and the right sub trees 
+    and get the maximum of the two. In the end we add the previous stated value
+    by 1 to account for the edge connecting the left or right sub tree.
+    */
 
-    else if (root->data == data) std::cout << "Found!" <<std::endl;
-    else if (root->data <= data)
-    {
-        return searchBST(root->left, data);
-    }
-    else
-    {
-        return searchBST(root->right, data);
-    }
+   if (root == NULL)
+   {
+        return -1;
+   }
+
+   return std::max(findHeight(root->left), findHeight(root->right)) + 1;
 }
 
 int main()
@@ -96,10 +91,7 @@ int main()
     insert(root, 20);
     insert(root, 25);
     insert(root, 8);
-    insert(root, 12);   
+    insert(root, 12);
 
-    int queryNum;
-    std::cout << "Enter the number for query:"; 
-    std::cin >> queryNum;
-    searchBST(root, queryNum);
+    std::cout << "Height of the tree: " << findHeight(root) << std::endl;
 }
