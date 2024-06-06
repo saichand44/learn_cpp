@@ -77,7 +77,7 @@ void searchBST(BSTNode* root, int data)
     }
 
     else if (root->data == data) std::cout << "Found!" <<std::endl;
-    else if (root->data <= data)
+    else if (root->data > data)
     {
         return searchBST(root->left, data);
     }
