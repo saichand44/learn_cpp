@@ -2,11 +2,11 @@
 #include <string.h>
 
 /*
-Usually in C++, we cannot straight forwardly return multple variables of different
+Usually in C++, we cannot straight forwardly return multiple variables of different
 data types unlike in Python. There are several workarounds for the same in C++.
 
 1. Using pass by reference or pointers
-2. Using arrays or vectors --> limited to same datatype but multple return values
+2. Using arrays or vectors --> limited to same datatype but multiple return values
     a. NOTE: In general when we create arrays and vectors, arrays are created in
              stack memory and vectors are created in heap memory.
 3. Using a struct
@@ -22,7 +22,7 @@ void sum_and_string1(int &sum, std::string &string)
     // Modify the string
     string[0] = '!';
 
-    // Here we can also pass the varibales using pointers instead of pass by reference
+    // Here we can also pass the variables using pointers instead of pass by reference
     // We just have to derefence in that case.
 }
 
