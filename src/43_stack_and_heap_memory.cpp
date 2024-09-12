@@ -1,0 +1,5 @@
+/*
+Try to allocate on the stack memory whenever possible. Only reason to allocate on
+the heap memory is when we the memory requirements are very large and if we
+intend to keep  the lifetime of the memory beyond the scope.
+*/
