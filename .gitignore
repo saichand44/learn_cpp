@@ -4,7 +4,9 @@
 # .vscode/
 /src/*
 /src_DS/*
+/misc/*
 
 # trying to negate files that have .cpp extension
 !src/*.cpp
 !src_DS/*.cpp
+!misc/*.cpp
