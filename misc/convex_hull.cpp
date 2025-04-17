@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <cmath>
 
+// Reference code: https://cp-algorithms.com/geometry/convex-hull.html
+
 struct Point
 {
     int x;
